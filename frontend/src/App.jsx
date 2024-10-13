@@ -5,7 +5,7 @@ import axios from 'axios';
 function App() {
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get('http://localhost:5000/api/feedback');
+            const response = await axios.get('http://localhost:8000');
             console.log(response.data);
         };
 
