@@ -4,13 +4,19 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const feedbackRoutes = require('./routes/feedbackRoutes');
+
+
 
 const app = express();
 const PORT = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(bodyParser.json());
-console.log(process.env.MONGODB_URI)
+
+app.use('/api/feedback', feedbackRoutes);
+
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
