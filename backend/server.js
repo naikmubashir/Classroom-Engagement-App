@@ -8,12 +8,15 @@ const http = require('http');
 const { Server } = require('socket.io');
 const Poll = require('./models/Poll');
 const pollRoutes = require('./routes/pollRoutes');
-const financialAidRoutes = require('./routes/financialAidRoutes');
+
 const openaiRoutes=require('./routes/openaiRoutes')
 
+//const userRoutes = require('./routes/userRoutes');
 
 
-const app = express(); // Keep this before creating server
+
+
+const app = express(); 
 const server = http.createServer(app); // Create server using app
 
 const PORT = process.env.PORT || 8000;
@@ -27,10 +30,11 @@ app.use(cors({
     credentials: true // Optional: if you need to include cookies in requests
 }));
 app.use(bodyParser.json());
+ //app.use('/api/users', userRoutes);
 app.use('/api/feedback', feedbackRoutes);
 app.use('/api/polls', pollRoutes);
 app.use('/api/openai', openaiRoutes)
-app.use('/api/financial-aid', financialAidRoutes);
+
 
 const io = new Server(server, {
     cors: {
@@ -63,16 +67,7 @@ io.on('connection', (socket) => {
         console.log('User disconnected:', socket.id);
     });
 });
-// Financial Aid route
-// app.get('/api/financial-aid', async (req, res) => {
-//     try {
-//       const financialData = await FinancialAid.find(); // Model storing financial aid info
-//       res.json(financialData);
-//     } catch (error) {
-//       console.error("Error fetching financial aid data", error);
-//       res.status(500).send("Server error");
-//     }
-//   });
+
   
 
 

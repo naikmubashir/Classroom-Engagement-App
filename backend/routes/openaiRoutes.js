@@ -26,8 +26,8 @@ router.post('/', async (req, res) => {
             top_p: 1.0,
             max_tokens: 1000,
         });
-        console.log("serrrrrverr"+completion[keys])
-        console.log("meeessssssssaaaagee"+messages)
+        // console.log("serrrrrverr"+completion[keys])
+        // console.log("meeessssssssaaaagee"+messages)
 
         // Send back the response from OpenAI to the client
         res.json(completion);
